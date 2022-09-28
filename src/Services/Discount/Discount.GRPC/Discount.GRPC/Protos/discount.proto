@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option csharp_namespace = "Discount.GRPC";
+
+package discount;
+
+// The greeting service definition.
+service DiscountProtoService {
+  // Sends a greeting
+  rpc CreateCoupon (CreateCouponRequest) returns (Response);
+  rpc UpdateCoupon (UpdateCouponRequest) returns (Response);
+  rpc GetCoupon (GetCouponRequest) returns (CouponModel);
+  rpc DeleteCoupon (DeleteCouponRequest) returns (Response);
+}
+
+// The request message containing the user's name.
+message CouponModel {
+  int32 Id = 1;
+  string ProductName = 2;
+  string Description = 3;
+  int32 Amount = 4;
+}
+
+message CreateCouponRequest{
+	CouponModel Coupon = 1;
+}
+
+message UpdateCouponRequest{
+	CouponModel Coupon = 1;
+}
+
+message GetCouponRequest{
+	string ProductName = 1;
+}
+
+message DeleteCouponRequest{
+	int32 ProductId = 1;
+}
+
+// The response message containing the greetings.
+message Response {
+  bool Successful = 1;
+}

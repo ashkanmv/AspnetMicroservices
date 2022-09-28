@@ -4,11 +4,11 @@ using Npgsql;
 
 namespace Discount.GRPC.Repository
 {
-    public class CouponRepository : ICouponRepository
+    public class DiscountRepository : IDiscountRepository
     {
         private readonly IConfiguration _configuration;
 
-        public CouponRepository(IConfiguration configuration)
+        public DiscountRepository(IConfiguration configuration)
         {
             _configuration = configuration;
         }

@@ -2,7 +2,7 @@
 
 namespace Discount.GRPC.Repository
 {
-    public interface ICouponRepository
+    public interface IDiscountRepository
     {
         Task<Coupon> GetDiscount(string productName);
         Task<Coupon> GetDiscountById(int id);
