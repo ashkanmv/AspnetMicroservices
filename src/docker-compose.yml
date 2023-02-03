@@ -1,4 +1,4 @@
-version: '3.4'
+﻿version: '3.4'
 
 services:
   catalogdb:
@@ -9,6 +9,9 @@ services:
 
   discountdb:
     image: postgres
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
 
   pgadmin:
     image: dpage/pgadmin4
@@ -31,7 +34,14 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.API/Dockerfile
 
+  discount.grpc:
+    image: ${DOCKER_REGISTRY-}discountgrpc
+    build:
+      context: .
+      dockerfile: Services/Discount/Discount.GRPC/Discount.GRPC/Dockerfile
+
 volumes:
   mongo_data:
   postgres_data:
   pgadmin_data:
+
