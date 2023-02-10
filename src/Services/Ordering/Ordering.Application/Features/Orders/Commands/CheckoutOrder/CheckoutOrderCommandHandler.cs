@@ -8,14 +8,14 @@ using Ordering.Domain.Entities;
 
 namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
 {
-    public class CheckoutOrderRequestHandler : IRequestHandler<CheckoutOrderRequest , long>
+    public class CheckoutOrderCommandHandler : IRequestHandler<CheckoutOrderCommand , long>
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IEmailService _emailService;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
         private readonly ILogger<Order> _logger;
 
-        public CheckoutOrderRequestHandler(IOrderRepository orderRepository, IEmailService emailService, Mapper mapper, ILogger<Order> logger)
+        public CheckoutOrderCommandHandler(IOrderRepository orderRepository, IEmailService emailService, IMapper mapper, ILogger<Order> logger)
         {
             _orderRepository = orderRepository;
             _emailService = emailService;
@@ -23,7 +23,7 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
             _logger = logger;
         }
 
-        public async Task<long> Handle(CheckoutOrderRequest request, CancellationToken cancellationToken)
+        public async Task<long> Handle(CheckoutOrderCommand request, CancellationToken cancellationToken)
         {
             var orderEntity = _mapper.Map<Order>(request);
 
@@ -37,7 +37,7 @@ namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
 
         }
 
-        private async Task SendEmail(CheckoutOrderRequest request)
+        private async Task SendEmail(CheckoutOrderCommand request)
         {
             var email = new Email() {Body = "", Subject = "", To = ""};
 

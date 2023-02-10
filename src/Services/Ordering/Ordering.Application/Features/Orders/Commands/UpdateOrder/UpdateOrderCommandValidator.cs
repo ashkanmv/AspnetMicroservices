@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Ordering.Application.Features.Orders.Commands.CheckoutOrder
+namespace Ordering.Application.Features.Orders.Commands.UpdateOrder
 {
-    internal class CheckoutOrderRequestValidation : AbstractValidator<CheckoutOrderRequest>
+    public class UpdateOrderCommandValidator : AbstractValidator<UpdateOrderCommand>
     {
-        public CheckoutOrderRequestValidation()
+        public UpdateOrderCommandValidator()
         {
-            RuleFor(o => o.UserName).NotEmpty().WithMessage("{UserName} required")
+            RuleFor(o => o.Id).NotEmpty().WithMessage("{UserName} required")
                 .NotNull()
-                .MaximumLength(50).WithMessage("cannot be more than 50 character");
+                .GreaterThan(0).WithMessage("ID can not be 0");
             RuleFor(o => o.EmailAddress)
                 .NotEmpty().WithMessage("{Email} required");
 

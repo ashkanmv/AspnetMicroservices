@@ -9,10 +9,10 @@ namespace Ordering.Application.Features.Orders.Queries.GetOrderList
     public class GetOrderListRequestHandler : IRequestHandler<GetOrderListRequest,List<OrdersVs>>
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly Mapper _mapper;
+        private readonly IMapper _mapper;
         private readonly ILogger<Order> _logger;
 
-        public GetOrderListRequestHandler(IOrderRepository orderRepository, Mapper mapper, ILogger<Order> logger)
+        public GetOrderListRequestHandler(IOrderRepository orderRepository, IMapper mapper, ILogger<Order> logger)
         {
             _orderRepository = orderRepository;
             _mapper = mapper;
