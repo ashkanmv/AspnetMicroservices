@@ -13,7 +13,7 @@ namespace Ordering.Application
             service.AddAutoMapper(Assembly.GetExecutingAssembly());
             service.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             service.AddMediatR(Assembly.GetExecutingAssembly());
-
+            
             service.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehaviour<,>));
 
             return service;
